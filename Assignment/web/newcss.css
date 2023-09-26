@@ -1,0 +1,16 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Sep 26, 2023, 8:42:26 PM
+    Author     : Admin
+*/
+
+.title{
+    display: flex;
+    margin: 0 auto;
+}
+.table thead{
+    background-color: dodgerblue;
+}
