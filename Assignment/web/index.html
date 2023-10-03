@@ -9,9 +9,47 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="newcss.css"/>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var selectWeek = document.getElementById("week");
+
+                // Lấy ngày hiện tại
+                var currentDate = new Date();
+
+                // Tính ngày đầu năm
+                var firstDayOfYear = new Date(currentDate.getFullYear(), 0, 1); // Tháng bắt đầu từ 0 (0 là tháng 1)
+
+                // Đặt ngày đầu năm là ngày thứ hai đầu tiên của tuần
+                while (firstDayOfYear.getDay() !== 1) { // 0 là CN, 1 là T2
+                    firstDayOfYear.setDate(firstDayOfYear.getDate() + 1);
+                }
+
+                // Tạo danh sách các tuần và thêm vào danh sách chọn
+                var weekNumber = 1;
+                while (firstDayOfYear.getFullYear() === currentDate.getFullYear()) {
+                    var endOfWeek = new Date(firstDayOfYear);
+                    endOfWeek.setDate(firstDayOfYear.getDate() + 6);
+
+                    // Lấy ngày và tháng
+                    var startDay = firstDayOfYear.getDate();
+                    var startMonth = firstDayOfYear.getMonth() + 1; // Tháng bắt đầu từ 0
+
+                    var endDay = endOfWeek.getDate();
+                    var endMonth = endOfWeek.getMonth() + 1; // Tháng bắt đầu từ 0
+
+                    var option = document.createElement("option");
+                    option.value = weekNumber;
+                    option.text = startDay + "/" + startMonth + " To " + endDay + "/" + endMonth;
+                    selectWeek.appendChild(option);
+
+                    firstDayOfYear.setDate(firstDayOfYear.getDate() + 7);
+                    weekNumber++;
+                }
+            });
+        </script>
     </head>
     <body>
-        <div class="title">
+        <div style="margin-top: 2%;text-align: center;">
             <a>Campus: </a>
             <select id="campusSelector">
                 <option value="FU-HL">FU-HL</option>
@@ -19,16 +57,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <option value="FU-CT">FU-CT</option>
             </select>
         </div>
-        
-        <div>
+
+        <div style="text-align: center;">
             <label for="lecture">Lecture: </label>
-            <input type="search" id="lecture" name="lecture" required>
+            <input type="search" id="lecture" name="lecture" value="sonnt5" required>
             <input type="submit" value="View">
         </div>
-        <table class="table">
-            <thead>
+        <table style="width: -webkit-fill-available;margin-top: 3%;">
+            <thead style="background-color: lightskyblue;">
                 <tr>
-                    <th>YEAR</th>
+                    <th style="text-align: inherit;">
+                        <label for="year">YEAR:</label>
+                        <select id="year" name="year">
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option selected="selected" value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </th>
                     <th>MON</th>
                     <th>TUE</th>
                     <th>WED</th>
@@ -38,14 +85,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <th>SUN</th>
                 </tr>
                 <tr>
-                    <th>WEEK</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
+                    <th style="text-align: inherit;">
+                        <label for="week">WEEK:</label>
+                        <select id="week" name="week">
+                            <option value="thisWeek" selected>2/10 To 8/10</option>
+                        </select>
+                    </th>
+                    <th id="day1">2/10</th>
+                    <th id="day2">3/10</th>
+                    <th id="day3">4/10</th>
+                    <th id="day4">5/10</th>
+                    <th id="day5">6/10</th>
+                    <th id="day6">7/10</th>
+                    <th id="day7">8/10</th>
                 </tr>
             </thead>
             <tbody>

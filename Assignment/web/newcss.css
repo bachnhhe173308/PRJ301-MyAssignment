@@ -6,11 +6,3 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     Created on : Sep 26, 2023, 8:42:26 PM
     Author     : Admin
 */
-
-.title{
-    display: flex;
-    margin: 0 auto;
-}
-.table thead{
-    background-color: dodgerblue;
-}
