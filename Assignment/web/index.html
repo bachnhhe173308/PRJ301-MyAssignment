@@ -8,7 +8,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="newcss.css"/>
+        <style>
+        table {
+            border-collapse: collapse; /* Loại bỏ khoảng cách giữa các đường kẻ */
+            width: 100%; /* Đảm bảo bảng đầy đủ chiều rộng của container */
+        }
+        table thead tr{
+            padding: 10px;
+            border-bottom: 1px solid black;
+        }
+        table thead tr th {
+            padding: 10px; /* Điều chỉnh giá trị padding tùy ý */
+            border-right: 1px solid black;
+        }
+        /* Đặt khoảng cách giữa các hàng */
+        table tbody tr {
+            padding: 10px; /* Điều chỉnh giá trị padding tùy ý */
+            border-bottom: 1px solid black;
+        }
+
+        /* Đặt khoảng cách giữa các cột */
+        table tbody tr td {
+            padding: 10px; /* Điều chỉnh giá trị padding tùy ý */
+            border-right: 1px solid black;
+        }
+
+        table tbody tr td:last-child {
+            border-right: none;
+        }
+    </style>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 var selectWeek = document.getElementById("week");
@@ -66,7 +94,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <table style="width: -webkit-fill-available;margin-top: 3%;">
             <thead style="background-color: lightskyblue;">
                 <tr>
-                    <th style="text-align: inherit;">
+                    <th rowspan="2" style="text-align: inherit;">
                         <label for="year">YEAR:</label>
                         <select id="year" name="year">
                             <option value="2020">2020</option>
@@ -74,6 +102,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                             <option value="2022">2022</option>
                             <option selected="selected" value="2023">2023</option>
                             <option value="2024">2024</option>
+                        </select>
+                        <br>
+                        <label for="week">WEEK:</label>
+                        <select id="week" name="week">
+                            <option value="thisWeek" selected>2/10 To 8/10</option>
                         </select>
                     </th>
                     <th>MON</th>
@@ -85,12 +118,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <th>SUN</th>
                 </tr>
                 <tr>
-                    <th style="text-align: inherit;">
-                        <label for="week">WEEK:</label>
-                        <select id="week" name="week">
-                            <option value="thisWeek" selected>2/10 To 8/10</option>
-                        </select>
-                    </th>
                     <th id="day1">2/10</th>
                     <th id="day2">3/10</th>
                     <th id="day3">4/10</th>
@@ -133,7 +160,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </tr>
                 <tr>
                     <td>Slot 4</td>
-                    <td>...</td>
+                    <td>
+                        <a href="/Assignment/attendance.jsp">SE1763</a><br>
+                        <a href="">-PRJ301</a><br>
+                        <a href="">at BE-202</a><br>
+                        <a style="color: green">(Attended)</a>
+                        <a href="https://fu-edunext.fpt.edu.vn"><input type="button" value="-EduNext" /></a>
+                    </td>
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>

@@ -544,7 +544,7 @@
                         </tbody>
                     </table>
                 </div>
-                <input name="submit" type="submit" id="attend" value="Save">
+                <input name="submit" type="submit" id="attend" value="Save" style="display: flex; margin: 0 auto; margin-bottom: 5%">
             </div>
         </div>
     </body>
