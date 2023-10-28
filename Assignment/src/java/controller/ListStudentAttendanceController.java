@@ -4,30 +4,43 @@
  */
 package controller;
 
+import dal.AttendanceDBContext;
+import dal.SessionDBContext;
+import dal.StudentDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import model.Attendance;
+import model.Student;
 
 /**
  *
  * @author Admin
  */
 public class ListStudentAttendanceController extends HttpServlet{
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        request.getRequestDispatcher("/ListStudentAttendance.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        String gname = req.getParameter("gname");
+        String subname = req.getParameter("subname");
+        
+        SessionDBContext sesDB = new SessionDBContext();
+        List<Date> dates = sesDB.getDatesByGnameAndSubname(gname, subname);
+        
+        AttendanceDBContext attDB = new AttendanceDBContext();
+        ArrayList<Attendance> atts = attDB.getAttendanceByGnameAndSubname(gname, subname);
+        StudentDBContext stuDB = new StudentDBContext();
+        ArrayList<Student> students = stuDB.getStudentByGnameAndSubname(gname, subname);
+        
+        req.setAttribute("students", students);
+        req.setAttribute("dates", dates);
+        req.setAttribute("atts", atts);
+        req.getRequestDispatcher("/ListStudentAttendance.jsp").forward(req, resp);
     }
     
 }

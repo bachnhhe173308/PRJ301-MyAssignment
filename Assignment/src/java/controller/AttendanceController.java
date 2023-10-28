@@ -29,6 +29,11 @@ public class AttendanceController extends HttpServlet {
         int sid = Integer.parseInt(req.getParameter("sid"));
         int sesid = Integer.parseInt(req.getParameter("sesid"));
         String name = req.getParameter("name");
+        SessionDBContext sesDB = new SessionDBContext();
+        Session session = sesDB.getSessionsByID(sid);
+        String gname = session.getGroup().getName();
+        String subname = session.getGroup().getSubject().getName();
+        
         ses.setId(sesid);
         String[] stuids = req.getParameterValues("stuid");
         for (String stuid : stuids) {
@@ -41,7 +46,6 @@ public class AttendanceController extends HttpServlet {
             a.setDescription(req.getParameter("description" + stuid));
             ses.getAtts().add(a);
         }
-        SessionDBContext sesDB = new SessionDBContext();
         sesDB.addAttendences(ses);
         try ( PrintWriter out = resp.getWriter()) {
             out.println("<!DOCTYPE html>");
@@ -51,7 +55,7 @@ public class AttendanceController extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Attendance has been completed</h1>");
-            out.println("<a href=\"checkAttendance?sid="+sid+"\"><button>Review</button></a>");
+            out.println("<a href=\"checkAttendance?sid="+sid+"&gname="+gname+"&subname="+subname+"\"><button>Review</button></a>");
             out.println("<br><br>");
             out.println("<a href=\"timetable?name="+name+"\"><button>Back to TimeTable</button></a>");
             out.println("</body>");

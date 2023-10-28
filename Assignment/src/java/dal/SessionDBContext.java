@@ -9,12 +9,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Attendance;
 import model.Group;
 import model.Room;
 import model.Session;
+import model.Student;
 import model.Subject;
 import model.TimeSlot;
 
@@ -97,12 +99,12 @@ public class SessionDBContext extends DBContext<Session> {
                 Group g = new Group();
                 g.setId(rs.getInt("gid"));
                 g.setName(rs.getString("gname"));
-                session.setGroup(g);
 
                 Subject sub = new Subject();
                 sub.setId(rs.getInt("subid"));
                 sub.setName(rs.getString("subname"));
                 g.setSubject(sub);
+                session.setGroup(g);
 
                 TimeSlot time = new TimeSlot();
                 time.setId(rs.getInt("tid"));
@@ -169,7 +171,29 @@ public class SessionDBContext extends DBContext<Session> {
             }
         }
     }
-    
+
+    public List<Date> getDatesByGnameAndSubname(String gname, String subname) {
+        List<Date> dates = new ArrayList<>();
+        try {
+            String sql = "select ses.[date] \n"
+                    + "from Session ses\n"
+                    + "join [Group] g on ses.gid = g.gid\n"
+                    + "join [Subject] sub on g.subid = sub.subid\n"
+                    + "where g.gname=? and sub.subname = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, gname);
+            stm.setString(2, subname);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Date date = rs.getDate("date");
+                dates.add(date);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return dates;
+    }
+
     @Override
     public ArrayList<Session> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

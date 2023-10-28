@@ -95,9 +95,7 @@
             
             <a href="timetable?name=${name}"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">Back to TimeTable</button></a>
             
-            <form method="post" action="viewAllAttendance">
-                <button type="submit" name="view" style="display: flex; margin: 0 auto; margin-bottom: 5%">View list attendance</button>
-            </form>
+            <a href="ListStudentAttendance?gname=${param.gname}&subname=${param.subname}"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">View list</button></a>
             
         </div>
     </body>

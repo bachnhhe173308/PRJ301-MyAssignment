@@ -30,7 +30,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListStudentAttendance</servlet-name>
-        <url-pattern>/viewAllAttendance</url-pattern>
+        <url-pattern>/ListStudentAttendance</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
