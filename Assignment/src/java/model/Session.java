@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,7 +19,25 @@ public class Session implements IBaseModel {
     private Room room;
     private TimeSlot slot;
     private int index;
+    private boolean isAtt;
+    private ArrayList<Attendance> atts = new ArrayList<>();
 
+    public ArrayList<Attendance> getAtts() {
+        return atts;
+    }
+
+    public void setAtts(ArrayList<Attendance> atts) {
+        this.atts = atts;
+    }
+
+    public boolean isIsAtt() {
+        return isAtt;
+    }
+
+    public void setIsAtt(boolean isAtt) {
+        this.isAtt = isAtt;
+    }
+    
     public int getId() {
         return id;
     }

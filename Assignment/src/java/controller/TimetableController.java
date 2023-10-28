@@ -32,7 +32,7 @@ public class TimetableController extends HttpServlet{
         String s_from = request.getParameter("from");
         String s_to = request.getParameter("to");
         ArrayList<Date> dates = new ArrayList<>();
-        if(s_from ==null)// this week
+        if(s_from == null)// this week
         {
             dates = (ArrayList<Date>) GetDate.getDatesOfCurrentWeek();
         }

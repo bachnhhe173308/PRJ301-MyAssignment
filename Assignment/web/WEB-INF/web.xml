@@ -4,9 +4,33 @@
         <servlet-name>timetable</servlet-name>
         <servlet-class>controller.TimetableController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>attendance</servlet-name>
+        <servlet-class>controller.AttendanceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checkAtt</servlet-name>
+        <servlet-class>controller.CheckAttendanceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListStudentAttendance</servlet-name>
+        <servlet-class>controller.ListStudentAttendanceController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>timetable</servlet-name>
         <url-pattern>/timetable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>attendance</servlet-name>
+        <url-pattern>/attendance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkAtt</servlet-name>
+        <url-pattern>/checkAttendance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListStudentAttendance</servlet-name>
+        <url-pattern>/viewAllAttendance</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
