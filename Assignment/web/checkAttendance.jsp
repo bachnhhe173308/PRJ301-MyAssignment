@@ -95,7 +95,7 @@
             
             <a href="timetable?name=${name}"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">Back to TimeTable</button></a>
             
-            <a href="ListStudentAttendance?gname=${param.gname}&subname=${param.subname}"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">View list</button></a>
+            <a href="ListStudentAttendance?gname=${param.gname}&subname=${param.subname}"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">View attendance sheet in class</button></a>
             
         </div>
     </body>

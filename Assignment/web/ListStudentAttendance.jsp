@@ -43,6 +43,7 @@
                         <tr>
                             <th>Student ID</th>
                             <th>Student Name</th>
+                            <th>Absent Percent</th>
                                 <c:forEach items="${requestScope.dates}" var="d">
                                 <th>
                                     ${d}
@@ -52,13 +53,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${requestScope.students}" var="s">
+                        <c:forEach items="${requestScope.students}" var="s" varStatus="loop">
                             <tr>
                                 <td>
                                     ${s.id}
                                 </td>
                                 <td>
                                     ${s.name}
+                                </td>
+                                <td>
+                                    ${requestScope.absentPercentages[loop.index]}%
                                 </td>
                                 <c:forEach items="${requestScope.dates}" var="d">
                                     <c:forEach items="${requestScope.atts}" var="a">
