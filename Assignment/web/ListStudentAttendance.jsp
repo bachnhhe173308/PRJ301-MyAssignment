@@ -95,5 +95,8 @@
                 </table>
             </div>
         </div>
+        <form action="timetable">
+            <input type="submit" value="Back to timetable">
+        </form>
     </body>
 </html>
