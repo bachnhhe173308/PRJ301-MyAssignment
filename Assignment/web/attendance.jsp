@@ -87,6 +87,7 @@
                                         </td>
                                         <td>
                                             ${a.session.instructor.name}
+                                            <input type="hidden" value="${a.session.instructor.name}" name="name"/>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -94,7 +95,6 @@
                         </table>
                     </div>
                     <input type="hidden" value="${param.sid}" name="sid"/>
-                    <input type="hidden" value="${param.name}" name="name"/>
                     <input type="hidden" value="${requestScope.ses.id}" name="sesid"/>
                     <input type="submit" value="Save" style="display: flex; margin: 0 auto; margin-bottom: 5%">
                 </div>

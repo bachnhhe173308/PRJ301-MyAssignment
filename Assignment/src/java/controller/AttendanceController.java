@@ -33,7 +33,7 @@ public class AttendanceController extends HttpServlet {
         Session session = sesDB.getSessionsByID(sid);
         String gname = session.getGroup().getName();
         String subname = session.getGroup().getSubject().getName();
-        
+
         ses.setId(sesid);
         String[] stuids = req.getParameterValues("stuid");
         for (String stuid : stuids) {
@@ -55,9 +55,9 @@ public class AttendanceController extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Attendance has been completed</h1>");
-            out.println("<a href=\"checkAttendance?sid="+sid+"&gname="+gname+"&subname="+subname+"\"><button>Review</button></a>");
+            out.println("<a href=\"checkAttendance?sid=" + sid + "&gname=" + gname + "&subname=" + subname + "\"><button>Review</button></a>");
             out.println("<br><br>");
-            out.println("<a href=\"timetable?name="+name+"\"><button>Back to TimeTable</button></a>");
+            out.println("<a href=\"timetable?name=" + name + "\"><button>Back to TimeTable</button></a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,14 +65,18 @@ public class AttendanceController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int sid = Integer.parseInt(req.getParameter("sid"));
-        SessionDBContext sesDB = new SessionDBContext();
-        Session ses = sesDB.getSessionsByID(sid);
+        try {
+            int sid = Integer.parseInt(req.getParameter("sid"));
+            SessionDBContext sesDB = new SessionDBContext();
+            Session ses = sesDB.getSessionsByID(sid);
 
-        AttendanceDBContext attDB = new AttendanceDBContext();
-        ArrayList<Attendance> atts = attDB.getAttendancesBySession(sid);
-        req.setAttribute("ses", ses);
-        req.setAttribute("atts", atts);
+            AttendanceDBContext attDB = new AttendanceDBContext();
+            ArrayList<Attendance> atts = attDB.getAttendancesBySession(sid);
+            req.setAttribute("ses", ses);
+            req.setAttribute("atts", atts);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
         req.getRequestDispatcher("/attendance.jsp").forward(req, resp);
     }
 

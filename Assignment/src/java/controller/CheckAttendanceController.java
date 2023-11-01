@@ -23,18 +23,22 @@ public class CheckAttendanceController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int sid = Integer.parseInt(req.getParameter("sid"));
-        SessionDBContext sesDB = new SessionDBContext();
-        Session ses = sesDB.getSessionsByID(sid);
+        try {
+            int sid = Integer.parseInt(req.getParameter("sid"));
+            SessionDBContext sesDB = new SessionDBContext();
+            Session ses = sesDB.getSessionsByID(sid);
 
-        AttendanceDBContext attDB = new AttendanceDBContext();
-        ArrayList<Attendance> atts = attDB.getAttendancesBySession(sid);
-        String name = atts.get(1).getSession().getInstructor().getName();
-        req.setAttribute("name", name);
-        req.setAttribute("ses", ses);
-        req.setAttribute("atts", atts);
+            AttendanceDBContext attDB = new AttendanceDBContext();
+            ArrayList<Attendance> atts = attDB.getAttendancesBySession(sid);
+            String name = atts.get(0).getSession().getInstructor().getName();
+            req.setAttribute("name", name);
+            req.setAttribute("ses", ses);
+            req.setAttribute("atts", atts);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+
         req.getRequestDispatcher("/checkAttendance.jsp").forward(req, resp);
     }
-
 
 }

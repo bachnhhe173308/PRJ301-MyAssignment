@@ -62,7 +62,14 @@
                                     ${s.name}
                                 </td>
                                 <td>
-                                    ${requestScope.absentPercentages[loop.index]}%
+                                    <c:choose>
+                                        <c:when test="${requestScope.absentPercentages[loop.index] > 20}">
+                                            <font color="red">${requestScope.absentPercentages[loop.index]}%</font>
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${requestScope.absentPercentages[loop.index]}%
+                                        </c:otherwise>
+                                    </c:choose>
                                 </td>
                                 <c:forEach items="${requestScope.dates}" var="d">
                                     <c:forEach items="${requestScope.atts}" var="a">
