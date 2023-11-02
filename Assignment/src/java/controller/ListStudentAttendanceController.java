@@ -46,7 +46,7 @@ public class ListStudentAttendanceController extends HttpServlet {
                 for (Date date : dates) {
                     for (Attendance attendance : atts) {
                         if (attendance.getSession().getDate().equals(date) && attendance.getStudent().getId() == student.getId()) {
-                            if (!attendance.getStatus()) {
+                            if (attendance.getStatus() == false) {
                                 totalAbsent++;
                             }
                         }

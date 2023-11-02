@@ -75,14 +75,23 @@
                                     <c:forEach items="${requestScope.atts}" var="a">
 
                                         <c:if test="${a.session.date eq d and a.student.id eq s.id}">
-                                            <c:if test="${a.status}">
+                                            <c:choose>
+                                                <c:when test="${a.status == true}">
+                                                    <td>
+                                                        <font color="green">P</font>
+                                                    </td>
+                                                </c:when>
+                                                <c:when test="${a.status == false}">
+                                                    <td>
+                                                        <font color="red">A</font>
+                                                    </td>
+                                                </c:when>
+                                            </c:choose>
+                                        </c:if>
+                                        <c:if test="${a.session.date eq d}">
+                                            <c:if test="${a.status == null}">
                                                 <td>
-                                                    <font color="green">P</font>
-                                                </td>
-                                            </c:if>
-                                            <c:if test="${!a.status}">
-                                                <td>
-                                                    <font color="red">A</font>
+                                                    <font color="blue">...</font>
                                                 </td>
                                             </c:if>
                                         </c:if>

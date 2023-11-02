@@ -91,7 +91,11 @@ public class AttendanceDBContext extends DBContext<Attendance> {
                 stu.setId(rs.getInt("stuid"));
                 stu.setName(rs.getString("stuname"));
                 att.setStudent(stu);
-                att.setStatus(rs.getBoolean("status"));
+                if (rs.getObject("status") == null) {
+                    att.setStatus(null);
+                } else {
+                    att.setStatus(rs.getBoolean("status"));
+                }
                 atts.add(att);
             }
         } catch (SQLException e) {

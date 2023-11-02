@@ -14,7 +14,7 @@ import java.util.Date;
 public class Attendance implements IBaseModel{
     private Session session;
     private Student student;
-    private boolean status;
+    private Boolean status;
     private String description;
     private Date att_datetime;
 
@@ -34,11 +34,11 @@ public class Attendance implements IBaseModel{
         this.student = student;
     }
 
-    public boolean getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
