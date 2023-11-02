@@ -7,24 +7,27 @@ package controller;
 import dal.AttendanceDBContext;
 import dal.SessionDBContext;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import model.Attendance;
+import model.Role;
 import model.Session;
 import model.Student;
+import model.User;
 
 /**
  *
  * @author Admin
  */
-public class AttendanceController extends HttpServlet {
+public class AttendanceController extends AuthorizationController {
+
+
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user, ArrayList<Role> roles) throws ServletException, IOException {
         Session ses = new Session();
         int sid = Integer.parseInt(req.getParameter("sid"));
         int sesid = Integer.parseInt(req.getParameter("sesid"));
@@ -64,7 +67,7 @@ public class AttendanceController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user, ArrayList<Role> roles) throws ServletException, IOException {
         try {
             int sid = Integer.parseInt(req.getParameter("sid"));
             SessionDBContext sesDB = new SessionDBContext();
