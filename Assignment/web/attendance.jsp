@@ -87,7 +87,6 @@
                                         </td>
                                         <td>
                                             ${a.session.instructor.name}
-                                            <input type="hidden" value="${a.session.instructor.name}" name="name"/>
                                         </td>
                                     </tr>
                                 </c:forEach>

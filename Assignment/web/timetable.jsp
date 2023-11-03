@@ -52,8 +52,7 @@
             <div style="text-align: center;">
                 <label for="lecture">Lecture: </label>
                 <input type="text" name="name" value="${param.name}"/><br>
-                From <input type="date" value="${requestScope.from}" name="from"/>
-                To <input type="date" value="${requestScope.to}" name="to"/><br>
+                Get Date: <input type="date" value="${requestScope.from}" name="from"/>
                 <input type="submit" value="View"/>
             </div>
         </form>
@@ -99,5 +98,6 @@
                 </c:forEach>
             </tbody>
         </table>
+        <a href="home"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">Back to Home</button></a>
     </body>
 </html>

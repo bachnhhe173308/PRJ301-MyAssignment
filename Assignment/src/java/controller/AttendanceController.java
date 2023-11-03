@@ -24,14 +24,11 @@ import model.User;
  */
 public class AttendanceController extends AuthorizationController {
 
-
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user, ArrayList<Role> roles) throws ServletException, IOException {
         Session ses = new Session();
         int sid = Integer.parseInt(req.getParameter("sid"));
         int sesid = Integer.parseInt(req.getParameter("sesid"));
-        String name = req.getParameter("name");
         SessionDBContext sesDB = new SessionDBContext();
         Session session = sesDB.getSessionsByID(sid);
         String gname = session.getGroup().getName();
@@ -54,13 +51,37 @@ public class AttendanceController extends AuthorizationController {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AttendanceController</title>");
+            out.println("<title>Servlet AttendanceController</title>"
+                    + "<style>\n"
+                    + "            body {\n"
+                    + "                font-family: Arial, sans-serif;\n"
+                    + "                background-color: #f0f0f0;\n"
+                    + "            }\n"
+                    + "            .container {\n"
+                    + "                width: 50%;\n"
+                    + "                margin: 0 auto;\n"
+                    + "                text-align: center;\n"
+                    + "                margin-top: 100px;\n"
+                    + "                background-color: #FFA042;\n"
+                    + "                padding: 50px;\n"
+                    + "                border-radius: 20px;\n"
+                    + "                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);\n"
+                    + "            }\n"
+                    + "            h1 {\n"
+                    + "                color: brown;\n"
+                    + "                font-size: 24px;\n"
+                    + "                margin: 0;\n"
+                    + "                font-weight: bold;\n"
+                    + "            }\n"
+                    + "        </style>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Attendance has been completed</h1>");
-            out.println("<a href=\"checkAttendance?sid=" + sid + "&gname=" + gname + "&subname=" + subname + "\"><button>Review</button></a>");
-            out.println("<br><br>");
-            out.println("<a href=\"timetable?name=" + name + "\"><button>Back to TimeTable</button></a>");
+            out.println("<div class=\"container\">\n"
+                    + "<h1>Attendance has been completed</h1><br/>\n"
+                    + "<a href=\"checkAttendance?sid=" + sid + "&gname=" + gname + "&subname=" + subname + "\"><button>Review</button></a>\n"
+                    + "<br><br>"
+                    + "<a href=\"home\"><button>Back to Home</button></a>"
+                    + "</div>");
             out.println("</body>");
             out.println("</html>");
         }

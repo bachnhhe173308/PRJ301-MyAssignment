@@ -43,7 +43,7 @@ public class ListStudentAttendanceController extends AuthorizationController {
             StudentDBContext stuDB = new StudentDBContext();
             ArrayList<Student> students = stuDB.getStudentByGnameAndSubname(gname, subname);
 
-            List<Double> absentPercentages = new ArrayList<>();
+            List<Float> absentPercentages = new ArrayList<>();
 
             int totalSessions = dates.size();
             for (Student student : students) {
@@ -60,7 +60,7 @@ public class ListStudentAttendanceController extends AuthorizationController {
                 }
 
                 // Tính phần trăm absent và thêm vào danh sách
-                double absentPercentage = (double) totalAbsent / totalSessions * 100;
+                float absentPercentage = (float) totalAbsent / totalSessions * 100;
                 absentPercentages.add(absentPercentage);
             }
             req.setAttribute("absentPercentages", absentPercentages);

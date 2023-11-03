@@ -47,24 +47,34 @@ public class GetDate {
         return dates;
     }
 
-    public static List<Date> getSQLDatesBetween(String start, String end) throws ParseException {
+    public static List<Date> getWeekContainingDate(String day) throws ParseException {
         List<Date> dates = new ArrayList<>();
 
         // Define a simple date format, e.g., "2023-01-01"
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        // Parse the start and end dates
-        java.util.Date parsedStartDate = dateFormat.parse(start);
-        java.util.Date parsedEndDate = dateFormat.parse(end);
+        // Parse the input date
+        java.util.Date parsedDate = dateFormat.parse(day);
 
-        // Set the calendar to start date
+        // Set the calendar to the input date
         Calendar cal = Calendar.getInstance();
-        cal.setTime(parsedStartDate);
+        cal.setTime(parsedDate);
 
-        // Loop through the dates and add them to the list
-        while (!cal.getTime().after(parsedEndDate)) {
-            dates.add(new Date(cal.getTime().getTime())); // Add the SQL date to the list
-            cal.add(Calendar.DATE, 1); // Go to the next day
+        // Determine the offset from the first day of the week (in this case, we consider Monday as the first day)
+        int offset = cal.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY;
+        // If it's negative, we are in a week which is 'split' by the month end (e.g., Sunday is in the new month)
+        if (offset < 0) {
+            offset += 7;
+        }
+
+        // Rewind the calendar to last Monday. It's the start of the week
+        cal.add(Calendar.DATE, -offset);
+
+        // Loop to construct the list of dates for the week containing the input date
+        for (int i = 0; i < 7; i++) {  // 7 days in a week
+            Date sqlDate = new Date(cal.getTimeInMillis()); // convert to java.sql.Date
+            dates.add(sqlDate);
+            cal.add(Calendar.DATE, 1);  // move to the next day
         }
 
         return dates;

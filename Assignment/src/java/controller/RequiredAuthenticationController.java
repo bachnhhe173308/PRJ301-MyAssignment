@@ -44,7 +44,7 @@ public abstract class RequiredAuthenticationController extends HttpServlet {
         if (isAuthenticated(request)) {
             doGet(request, response, (User) request.getSession().getAttribute("account"));
         } else {
-            response.getWriter().println("You do not have permission to access this page!");
+            request.getRequestDispatcher("/authentication/notification.html").forward(request, response);
         }
     }
 
@@ -55,7 +55,7 @@ public abstract class RequiredAuthenticationController extends HttpServlet {
             //do business overrided in the sub class
             doPost(request, response, (User) request.getSession().getAttribute("account"));
         } else {
-            response.getWriter().println("You do not have permission to access this page!");
+            request.getRequestDispatcher("/authentication/notification.html").forward(request, response);
         }
     }
 

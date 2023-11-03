@@ -104,8 +104,6 @@
                 </table>
             </div>
         </div>
-        <form action="timetable">
-            <input type="submit" value="Back to timetable">
-        </form>
+        <a href="home"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">Back to Home</button></a>
     </body>
 </html>

@@ -31,7 +31,6 @@ public class TimetableController extends AuthorizationController{
         response.setContentType("text/html;charset=UTF-8");
         String name = request.getParameter("name");
         String s_from = request.getParameter("from");
-        String s_to = request.getParameter("to");
         ArrayList<Date> dates = new ArrayList<>();
         if(s_from == null)// this week
         {
@@ -40,7 +39,7 @@ public class TimetableController extends AuthorizationController{
         else
         {
             try {
-                dates = (ArrayList<Date>) GetDate.getSQLDatesBetween(s_from,s_to);
+                dates = (ArrayList<Date>) GetDate.getWeekContainingDate(s_from);
             } catch (ParseException ex) {
                 Logger.getLogger(TimetableController.class.getName()).log(Level.SEVERE, null, ex);
             }

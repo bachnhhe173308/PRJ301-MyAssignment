@@ -4,17 +4,12 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="vi">
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        
+        <title>Home Page</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -34,30 +29,42 @@
                 text-align: center;
                 border-bottom: 1px solid #ddd;
             }
-
-            .test ul li{
+            
+            .left ul li{
                 margin-bottom: 20%;
             }
             
-            .test ul li a {
+            .left ul li a {
                 color: #fff;
                 font-weight: 500;
                 transition: background 0.3s;
-                border-radius: 4px;
+                border-radius: 8px;
                 margin: 0 2%;
                 padding: 8px 30px;
                 text-decoration: none;
                 font-size: x-large;
             }
 
-            .test ul li a:hover {
+            .left ul li a:hover {
                 background-color: #555;
             }
             
-            .content {
+            .container {
+                display: flex;
                 flex: 1;
+            }
+
+            nav.left {
+                background-color: #333;
+                color: #fff;
+                flex: 1; /* Chiếm 1 phần bên trái */
+                padding: 20px;
+            }
+
+            .content {
+                flex: 9; /* Chiếm phần còn lại */
+                padding: 20px;
                 text-align: center;
-                overflow-y: auto;
             }
 
             .content img {
@@ -67,44 +74,25 @@
                 box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 
             }
-
-            .links-container {
-                flex: 1; /* Đảm bảo container mới sẽ chiếm hết không gian còn lại */
-                display: flex;
-                justify-content: center; /* Căn giữa theo chiều ngang */
-            }
-
-            .test {
-                box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100%; /* Đặt chiều cao của cột bên trái bằng chiều cao màn hình */
-                width: 250px; /* Đặt chiều rộng của cột bên trái (tùy chỉnh) */
-                background-color: darkgreen; /* Màu nền của cột bên trái */
-                overflow: auto;
-            }
-
         </style>
     </head>
-
     <body>
-        <nav class="test">
-            <ul>
-                <li><a href="home.jsp">Home</a></li>
-                <li><a href="timetable">TimeTable</a></li>
-                <li><a href="logout"> Log out</a></li>
-            </ul>
-        </nav>
-        
-        <header>
-            <h1>Welcome ${sessionScope.account.displayname}</h1>
-        </header>
+        <div class="container">
+            <nav class="left">
+                <ul>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="timetable">TimeTable</a></li>
+                    <li><a href="logout">Log out</a></li>
+                </ul>
+            </nav>
+            
+            <div class="content">
+                <header>
+                    <h1>Welcome ${sessionScope.account.displayname}</h1>
+                </header>
 
-
-        <div class="content">
-            <img src="img/Untitled-6057-1612360667.png" alt="Image Description" />
+                <img src="img/Untitled-6057-1612360667.png" alt="Image Description" />
+            </div>
         </div>
-
     </body>
 </html>

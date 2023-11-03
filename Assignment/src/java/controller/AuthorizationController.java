@@ -32,7 +32,7 @@ public abstract class AuthorizationController extends RequiredAuthenticationCont
             doPost(request, response, user, user.getRoles());
         }
         else {
-            response.getWriter().println("You do not have permission to access this page!");
+            request.getRequestDispatcher("/authentication/notification.html").forward(request, response);
         }
     }
 
@@ -42,7 +42,7 @@ public abstract class AuthorizationController extends RequiredAuthenticationCont
             doGet(request, response, user, user.getRoles());
         }
         else {
-            response.getWriter().println("You do not have permission to access this page!");
+            request.getRequestDispatcher("/authentication/notification.html").forward(request, response);
         }
     }
 
