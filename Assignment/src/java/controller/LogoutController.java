@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -18,7 +19,8 @@ public class LogoutController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().setAttribute("account", null);
+        HttpSession session = request.getSession();
+        session.invalidate();
         request.setAttribute("msg", "Log out successful!");
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }

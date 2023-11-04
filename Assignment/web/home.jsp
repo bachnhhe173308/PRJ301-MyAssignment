@@ -10,6 +10,8 @@
 <html>
     <head>
         <title>Home Page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -30,11 +32,12 @@
                 border-bottom: 1px solid #ddd;
             }
             
-            .left ul li{
+            .col-md-2 ul li{
                 margin-bottom: 20%;
+                list-style-type: none;
             }
             
-            .left ul li a {
+            .col-md-2 ul li a {
                 color: #fff;
                 font-weight: 500;
                 transition: background 0.3s;
@@ -45,29 +48,31 @@
                 font-size: x-large;
             }
 
-            .left ul li a:hover {
+            .col-md-2 ul li a:hover {
                 background-color: #555;
             }
             
-            .container {
+            .row {
                 display: flex;
                 flex: 1;
+                margin: 0;
+                padding: 0;
             }
 
-            nav.left {
+            nav.col-md-2 {
                 background-color: #333;
                 color: #fff;
-                flex: 1; /* Chiếm 1 phần bên trái */
+                flex: 2;
                 padding: 20px;
             }
 
-            .content {
-                flex: 9; /* Chiếm phần còn lại */
+            .col-md-10 {
+                flex: 8;
                 padding: 20px;
                 text-align: center;
             }
 
-            .content img {
+            .col-md-10 img {
                 max-width: 100%;
                 height: auto;
                 border-radius: 4px;
@@ -77,16 +82,16 @@
         </style>
     </head>
     <body>
-        <div class="container">
-            <nav class="left">
+        <div class="row">
+            <nav class="col-md-2">
                 <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a href="timetable">TimeTable</a></li>
-                    <li><a href="logout">Log out</a></li>
+                    <li><a href="home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                    <li><a href="timetable"><i class="glyphicon glyphicon-calendar"></i> TimeTable</a></li>
+                    <li><a href="logout"><i class="glyphicon glyphicon-log-out"></i> Log out</a></li>
                 </ul>
             </nav>
             
-            <div class="content">
+            <div class="col-md-10">
                 <header>
                     <h1>Welcome ${sessionScope.account.displayname}</h1>
                 </header>

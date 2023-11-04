@@ -95,7 +95,7 @@
             
             <a href="home"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">Back to Home</button></a>
             
-            <a href="ListStudentAttendance?gname=${param.gname}&subname=${param.subname}"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">View attendance sheet in class</button></a>
+            <a href="ListStudentAttendance?gname=${requestScope.gname}&subname=${requestScope.subname}"><button style="display: flex; margin: 0 auto; margin-bottom: 1%">View attendance sheet in class</button></a>
             
         </div>
     </body>

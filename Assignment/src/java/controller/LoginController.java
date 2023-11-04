@@ -22,7 +22,14 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+        HttpSession session = request.getSession(false); // Truyền false để không tạo phiên mới nếu phiên chưa tồn tại
+
+        if (session == null) {
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+        }
+        else {
+            request.getRequestDispatcher("/home.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -39,8 +46,7 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("account", loggedUser);
             request.getRequestDispatcher("home.jsp").forward(request, response);
-        }
-        else {
+        } else {
             request.setAttribute("error", "Username or password invalid!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
