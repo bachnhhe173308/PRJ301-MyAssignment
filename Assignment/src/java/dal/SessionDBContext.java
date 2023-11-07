@@ -16,7 +16,6 @@ import model.Attendance;
 import model.Group;
 import model.Room;
 import model.Session;
-import model.Student;
 import model.Subject;
 import model.TimeSlot;
 
@@ -192,6 +191,26 @@ public class SessionDBContext extends DBContext<Session> {
             System.out.println(e);
         }
         return dates;
+    }
+
+    public List<Integer> getSessionIdByUsername(String username) {
+        List<Integer> numbers = new ArrayList<>();
+        try {
+            String sql = "select sesid \n"
+                    + "from session ses join Instructor i on ses.iid = i.iid \n"
+                    + "join [User] u on i.iname = u.username \n"
+                    + "where u.username = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                int number = rs.getInt("sesid");
+                numbers.add(number);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return numbers;
     }
 
     @Override

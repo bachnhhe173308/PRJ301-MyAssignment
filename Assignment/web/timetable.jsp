@@ -18,7 +18,6 @@
                 line-height: 1.6;
                 margin: 0;
                 padding: 0;
-                background-color: #f4f4f4;
                 display: flex;
                 flex-direction: column;
                 min-height: 100vh;
@@ -91,12 +90,16 @@
                 text-align: center;
                 border-bottom: 1px solid #ddd;
             }
+            .image{
+                margin-bottom: 15%;
+            }
         </style>
     </head>
     <body>
         <div class="row">
             <nav class="col-md-2">
                 <ul>
+                    <img src="img/logo_home.png" alt="" class="image"/>
                     <li><a href="home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
                     <li><a href="timetable"><i class="glyphicon glyphicon-calendar"></i> TimeTable</a></li>
                     <li><a href="logout"><i class="glyphicon glyphicon-log-out"></i> Log out</a></li>

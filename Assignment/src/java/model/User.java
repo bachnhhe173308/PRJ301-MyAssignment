@@ -4,7 +4,6 @@
  */
 package model;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -15,17 +14,6 @@ public class User implements IBaseModel {
     private String password;
     private String displayname;
     
-    private ArrayList<Role> roles = new ArrayList<>();
-
-    public ArrayList<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(ArrayList<Role> roles) {
-        this.roles = roles;
-    }
-    
-
     public String getUsername() {
         return username;
     }

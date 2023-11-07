@@ -8,6 +8,7 @@ import dal.AttendanceDBContext;
 import dal.SessionDBContext;
 import dal.StudentDBContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,23 +16,20 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import model.Attendance;
-import model.Role;
 import model.Student;
-import model.User;
-
 /**
  *
  * @author Admin
  */
-public class ListStudentAttendanceController extends AuthorizationController {
+public class ListStudentAttendanceController extends HttpServlet{
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User user, ArrayList<Role> roles) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user, ArrayList<Role> roles) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String gname = req.getParameter("gname");
         String subname = req.getParameter("subname");
         if (gname != null || subname != null) {

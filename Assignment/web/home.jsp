@@ -79,14 +79,18 @@
                 box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 
             }
+            .image{
+                margin-bottom: 15%;
+            }
         </style>
     </head>
     <body>
         <div class="row">
             <nav class="col-md-2">
                 <ul>
+                    <img src="img/logo_home.png" alt="" class="image"/>
                     <li><a href="home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                    <li><a href="timetable"><i class="glyphicon glyphicon-calendar"></i> TimeTable</a></li>
+                    <li><a href="timetable?name=${sessionScope.account.username}"><i class="glyphicon glyphicon-calendar"></i> TimeTable</a></li>
                     <li><a href="logout"><i class="glyphicon glyphicon-log-out"></i> Log out</a></li>
                 </ul>
             </nav>
