@@ -8,8 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.GnameSubnamePair;
 import model.User;
 
 /**
@@ -38,8 +40,8 @@ public class UserDBContext extends DBContext<User> {
         return null;
     }
 
-    public String[] getGnameAndSubnameByUser(String user) {
-        String[] param = new String[2];
+    public List<GnameSubnamePair> getGnameAndSubnameByUser(String user) {
+        List<GnameSubnamePair> paramDB = new ArrayList<>();
         try {
             String sql = "select gname, subname from [User] u join Instructor i on u.username = i.iname \n"
                     + "join [Group] g on i.iid = g.sup_iis \n"
@@ -49,15 +51,17 @@ public class UserDBContext extends DBContext<User> {
             stm.setString(1, user);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
+                GnameSubnamePair gs = new GnameSubnamePair();
                 String gname = rs.getString("gname");
                 String subname = rs.getString("subname");
-                param[0]=gname;
-                param[1]=subname;
+                gs.setGname(gname);
+                gs.setSubname(subname);
+                paramDB.add(gs);
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return param;
+        return paramDB;
     }
 
     @Override

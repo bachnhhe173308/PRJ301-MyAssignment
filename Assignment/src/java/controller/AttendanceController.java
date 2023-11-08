@@ -30,9 +30,7 @@ public class AttendanceController extends HttpServlet {
             Session ses = sesDB.getSessionsByID(sid);
 
             AttendanceDBContext attDB = new AttendanceDBContext();
-            ArrayList<Attendance> atts = attDB.getAttendancesBySession(sid);
             req.setAttribute("ses", ses);
-            req.setAttribute("atts", atts);
             int sesid = Integer.parseInt(req.getParameter("sesid"));
             Session session = sesDB.getSessionsByID(sid);
             String gname = session.getGroup().getName();
@@ -54,6 +52,8 @@ public class AttendanceController extends HttpServlet {
             }
             sesDB.addAttendences(ses);
 
+            ArrayList<Attendance> atts = attDB.getAttendancesBySession(sid);
+            req.setAttribute("atts", atts);
             req.getRequestDispatcher("/checkAttendance.jsp").forward(req, resp);
         } catch (NumberFormatException e) {
             System.out.println(e);

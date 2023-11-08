@@ -20,6 +20,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import java.util.List;
+import model.GnameSubnamePair;
 
 /**
  *
@@ -109,7 +110,6 @@ public class AllFilter implements Filter {
 
         doBeforeProcessing(request, response);
 
-        
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
@@ -128,9 +128,17 @@ public class AllFilter implements Filter {
                     String gname = req.getParameter("gname");
                     String subname = req.getParameter("subname");
                     UserDBContext userDB = new UserDBContext();
-                    String[] param = userDB.getGnameAndSubnameByUser(username); // Assuming you have a method to retrieve gname and subname
+                    List<GnameSubnamePair> paramDB = userDB.getGnameAndSubnameByUser(username);
+                    boolean isMatched = false; // Biến này để kiểm tra xem có cặp gname-subname nào khớp không
 
-                    if (gname != null && subname != null && (!gname.equals(param[0]) || !subname.equals(param[1]))) {
+                    for (GnameSubnamePair pair : paramDB) {
+                        if (gname != null && subname != null && gname.equals(pair.getGname()) && subname.equals(pair.getSubname())) {
+                            isMatched = true;
+                            break; // Nếu tìm thấy cặp khớp, thoát khỏi vòng lặp
+                        }
+                    }
+                    
+                    if (gname != null && subname != null && (!isMatched)) {
                         resp.sendRedirect("authentication/notification.html");
                     } else {
                         chain.doFilter(request, response);
@@ -140,9 +148,7 @@ public class AllFilter implements Filter {
                 resp.sendRedirect("authentication/notification.html");
             }
         }
-        
-        
-        
+
         Throwable problem = null;
         try {
             chain.doFilter(request, response);

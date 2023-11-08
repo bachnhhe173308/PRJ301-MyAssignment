@@ -134,7 +134,18 @@
                     <thead style="background-color: orange;">
                         <tr>
                             <th style="text-align: inherit;">
-                                From <input type="date" value="${requestScope.from}" name="from" disabled /><br>
+                                From <input type="date" value="${requestScope.from}" name="from" disabled />
+                            </th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                            <th>Sunday</th>
+                        </tr>
+                        <tr>
+                            <th style="text-align: inherit;">
                                 To <input type="date" value="${requestScope.to}" name="to" disabled/> 
                             </th>
                             <c:forEach items="${requestScope.dates}" var="d">

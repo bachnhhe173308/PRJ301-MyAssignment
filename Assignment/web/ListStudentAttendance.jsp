@@ -56,10 +56,24 @@
                         <c:forEach items="${requestScope.students}" var="s" varStatus="loop">
                             <tr>
                                 <td>
-                                    ${s.id}
+                                    <c:choose>
+                                        <c:when test="${requestScope.absentPercentages[loop.index] > 20}">
+                                            <font color="red">${s.id}</font>
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${s.id}
+                                        </c:otherwise>
+                                    </c:choose>
                                 </td>
                                 <td>
-                                    ${s.name}
+                                    <c:choose>
+                                        <c:when test="${requestScope.absentPercentages[loop.index] > 20}">
+                                            <font color="red">${s.name}</font>
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${s.name}
+                                        </c:otherwise>
+                                    </c:choose>
                                 </td>
                                 <td>
                                     <c:choose>
